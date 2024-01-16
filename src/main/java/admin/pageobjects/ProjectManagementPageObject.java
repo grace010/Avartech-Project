@@ -13,9 +13,9 @@ public class ProjectManagementPageObject extends BasePage {
 
     }
 
-    public ProjectDetailPageObject clickToFirstProject(String rowNumber) {
-        waitForElementClickable(driver, ProjectManagementPageUI.ROW_TABLE, rowNumber);
-        clickToElement(driver,ProjectManagementPageUI.ROW_TABLE,rowNumber);
+    public ProjectDetailPageObject clickToFirstProject() {
+        waitForElementClickable(driver, ProjectManagementPageUI.ROW_TABLE);
+        clickToElement(driver,ProjectManagementPageUI.ROW_TABLE);
         return new ProjectDetailPageObject(driver);
     }
 }

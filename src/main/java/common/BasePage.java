@@ -1,5 +1,6 @@
 package common;
 
+import admin.pageuis.ProjectDetailPageUI;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
@@ -96,9 +97,11 @@ public class BasePage {
         }
     }
 
-    private WebElement getWebElement(WebDriver driver, String xpathLocator){
+    protected WebElement getWebElement(WebDriver driver, String xpathLocator){
         return driver.findElement(getByXpath(xpathLocator));
     }
+
+
 
     private WebElement getWebElement(WebDriver driver, String xpathLocator, String...restParaValue){
         return driver.findElement(getByXpath(xpathLocator, restParaValue));
@@ -115,11 +118,11 @@ public class BasePage {
         return By.xpath(xpathLocator);
     }
 
-    public void clickToElement(WebDriver driver, String xpathLocator){
-        getWebElement(driver,xpathLocator).click();
+    public void clickToElement(WebDriver driver, String xpathLocator) {
+        getWebElement(driver, xpathLocator).click();
     }
 
-    public void clickToElement(WebDriver driver, String xpathLocator, String... restParaValue){
+    public void clickToElement(WebDriver driver, String xpathLocator, String... restParaValue) {
         getWebElement(driver,xpathLocator, restParaValue).click();
     }
 
@@ -307,6 +310,17 @@ public class BasePage {
             return false;
         }
     }
+
+    public void uploadMultipleFiles(WebDriver driver, String...fileNames) {
+        String filePath = globalVariables.UPLOAD_FILE_FOLDER;
+        String fullFileName = "";
+        for (String file : fileNames) {
+            fullFileName = fullFileName + filePath + file +"\n";
+        }
+        fullFileName = fullFileName.trim();
+        getWebElement(driver,globalVariables.UPLOAD_FILE_BUTTON).sendKeys(fullFileName);
+    }
+
     public void waitForElementVisible(WebDriver driver, String xpathLocator) {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByXpath(xpathLocator)));
@@ -354,8 +368,5 @@ public class BasePage {
 
     private long shortTimeout = 10;
     private long longTimeout = 10;
-
-
-
 
 }
