@@ -6,6 +6,7 @@ import admin.pageobjects.ProjectDetailPageObject;
 import admin.pageobjects.ProjectManagementPageObject;
 import admin.pageobjects.UserManagementPageObject;
 import common.BaseTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -28,22 +29,33 @@ public class ProjectManagementPage extends BaseTest {
         loginPage.inputUserName(userName);
         loginPage.inputPassWord(password);
         userManagementPage = loginPage.clickToLoginButton();
-        projectManagementPage = userManagementPage.clickToProjectManagementTab();
-        //projectManagementPage = PageGenerator.getProjectManagementPage(driver);
+
     }
 
     @Test
     public void tc02_editProject(){
+        projectManagementPage = userManagementPage.clickToProjectManagementTab();
+        //driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).click();
+       /* projectDetailPage =*/ projectManagementPage.clickToFirstProject();
 
-        projectDetailPage = projectManagementPage.clickToFirstProject();
+        projectManagementPage.clickToEditButton();
+        sleepInSection(5);
 
-        projectDetailPage.clickToEditButton();
+        projectManagementPage.inputNewProjectName(projectName);
+        sleepInSection(5);
 
-        projectDetailPage.inputNewProjectName(projectName);
-
-        projectDetailPage.clickToConfirmButton();
+        projectManagementPage.clickToConfirmButton();
 
         //Assert.assertEquals(projectDetailPage.getNewProjectName(), projectName);
 
+    }
+
+    public void sleepInSection(long timeInSection) {
+        try {
+            Thread.sleep(timeInSection * 1000);
+        } catch (Exception e) {
+            // TODO: handle exceptVerify_Default_Dropdown2.javaion
+            e.printStackTrace();
+        }
     }
 }

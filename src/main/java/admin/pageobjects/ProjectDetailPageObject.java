@@ -20,11 +20,13 @@ public class ProjectDetailPageObject extends BasePage {
     }
 
     public void inputNewProjectName(String projectName) {
-        WebElement shadowHost = driver.findElement(By.xpath(ProjectDetailPageUI.SHADOW_ROOT_PROJECT_NAME_TEXT_BOX));
-        SearchContext shadow = shadowHost.getShadowRoot();
-        WebElement accept = shadow.findElement(By.xpath(ProjectDetailPageUI.PROJECT_NAME_TEXT_BOX));
-        accept.clear();
-        accept.sendKeys(projectName);
+        //WebElement shadowHost = driver.findElement(By.xpath(ProjectDetailPageUI.SHADOW_ROOT_PROJECT_NAME_TEXT_BOX));
+        //SearchContext shadow = shadowHost.getShadowRoot();
+       // WebElement accept = shadow.findElement(By.xpath(ProjectDetailPageUI.PROJECT_NAME_TEXT_BOX));
+       // accept.clear();
+       // accept.sendKeys(projectName);
+        waitForElementVisible(driver,ProjectDetailPageUI.PROJECT_NAME_TEXT_BOX);
+        sendKeyToElement(driver, ProjectDetailPageUI.PROJECT_NAME_TEXT_BOX,projectName );
     }
 
     public void clickToConfirmButton() {

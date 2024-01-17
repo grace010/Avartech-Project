@@ -110,10 +110,11 @@ public class BasePage {
         return driver.findElements(getByXpath(xpathLocator));
     }
 
-    private By getByXpath(String xpathLocator){
+    private By getByXpath(String xpathLocator) {
         return By.xpath(xpathLocator);
     }
-    private By getByXpath(String xpathLocator, String...restParaValue){
+
+    private By getByXpath(String xpathLocator, String... restParaValue) {
         xpathLocator = String.format(xpathLocator, (Object[]) restParaValue);
         return By.xpath(xpathLocator);
     }
@@ -193,6 +194,10 @@ public class BasePage {
     }
 
     public int getElementSize(WebDriver driver, String xpathLocator){
+        return getListWebElement(driver, xpathLocator).size();
+    }
+
+    public int getElementSize(WebDriver driver, String xpathLocator, String... restParaValue){
         return getListWebElement(driver, xpathLocator).size();
     }
 
