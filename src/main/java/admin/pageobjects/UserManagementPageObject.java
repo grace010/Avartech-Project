@@ -1,5 +1,7 @@
 package admin.pageobjects;
 
+
+import admin.pagegeneratormanager.PageGenerator;
 import admin.pageuis.UserManagementPageUI;
 import common.BasePage;
 import org.openqa.selenium.WebDriver;
@@ -10,10 +12,15 @@ public class UserManagementPageObject extends BasePage {
         this.driver = driver;
     }
 
-    public ProjectManagementPageObject clickToProjectManagementTab() {
+    public  ProjectManagementPageObject clickToProjectManagementTab() {
         waitForElementClickable(driver, UserManagementPageUI.PROJECT_MANAGEMENT_TAB);
         clickToElement(driver, UserManagementPageUI.PROJECT_MANAGEMENT_TAB);
-        return new ProjectManagementPageObject(driver);
+        return PageGenerator.getProjectManagementPage(driver);
+    }
+
+    public void clickToUserManagementTab() {
+        waitForElementClickable(driver, UserManagementPageUI.USER_MANAGEMENT_TAB);
+        clickToElement(driver, UserManagementPageUI.USER_MANAGEMENT_TAB);
     }
 }
 

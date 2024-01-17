@@ -14,16 +14,16 @@ public class ProjectManagementPageObject extends BasePage {
 
     }
 
-    public void clickToFirstProject() {
+    /*public void clickToFirstProject() {
         waitForElementClickable(driver, ProjectManagementPageUI.ROW_TABLE);
         clickToElement(driver,ProjectManagementPageUI.ROW_TABLE);
         //return new ProjectDetailPageObject(driver);
-    }
+    }*/
 
     public void clickToFirstProject(String ColumnName, String RowIndex) {
         int columnIndex = getElementSize(driver, ProjectManagementPageUI.COLUMN_INDEX, ColumnName) + 1;
-        waitForAllElementVisible(driver, HomePageUI.COLUMN_ROW_INDEX_TEXTBOX, RowIndex,String.valueOf(columnIndex));
-        sendkeyToElement(driver, HomePageUI.COLUMN_ROW_INDEX_TEXTBOX, valueIntoTextBox, RowIndex,String.valueOf(columnIndex));
+        waitForAllElementVisible(driver, ProjectManagementPageUI.COLUMN_ROW_INDEX_TEXT_BOX, RowIndex,String.valueOf(columnIndex));
+        clickToElement(driver, ProjectManagementPageUI.COLUMN_ROW_INDEX_TEXT_BOX, RowIndex,String.valueOf(columnIndex));
     }
     public void clickToEditButton() {
         waitForElementClickable(driver, ProjectDetailPageUI.EDIT_BUTTON);

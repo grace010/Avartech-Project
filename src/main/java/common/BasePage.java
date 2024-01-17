@@ -102,7 +102,6 @@ public class BasePage {
     }
 
 
-
     private WebElement getWebElement(WebDriver driver, String xpathLocator, String...restParaValue){
         return driver.findElement(getByXpath(xpathLocator, restParaValue));
     }
@@ -134,6 +133,14 @@ public class BasePage {
         webElement.clear();
         webElement.sendKeys(inputtedText);
     }
+
+    public void sendKeyToElement(WebDriver driver, String xpathLocator, String inputtedText, String... restParaValue){
+        WebElement webElement = getWebElement(driver,xpathLocator, restParaValue) ;
+        webElement.clear();
+        webElement.sendKeys(inputtedText);
+    }
+
+
 
     public  void selectItemDefaultDropDown(WebDriver driver, String xpathLocator,String textItem){
         Select select = new Select(getWebElement(driver, xpathLocator));

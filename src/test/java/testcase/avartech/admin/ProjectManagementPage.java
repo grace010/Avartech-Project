@@ -36,13 +36,13 @@ public class ProjectManagementPage extends BaseTest {
     public void tc02_editProject(){
         projectManagementPage = userManagementPage.clickToProjectManagementTab();
         //driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).click();
-       /* projectDetailPage =*/ projectManagementPage.clickToFirstProject();
+        /* projectDetailPage =*/ projectManagementPage.clickToFirstProject("Location", "2");
 
         projectManagementPage.clickToEditButton();
-        sleepInSection(5);
+       //
 
         projectManagementPage.inputNewProjectName(projectName);
-        sleepInSection(5);
+        //sleepInSection(5);
 
         projectManagementPage.clickToConfirmButton();
 
