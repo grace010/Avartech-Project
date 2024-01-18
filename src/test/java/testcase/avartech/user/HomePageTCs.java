@@ -1,4 +1,4 @@
 package testcase.avartech.user;
 
-public class homePage {
+public class HomePageTCs {
 }

@@ -1,11 +1,9 @@
 package admin.pageobjects;
 
-import admin.pageuis.ProjectDetailPageUI;
+import admin.pagegeneratormanager.PageGenerator;
 import admin.pageuis.ProjectManagementPageUI;
 import common.BasePage;
-import common.BaseTest;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ProjectManagementPageObject extends BasePage {
     private WebDriver driver;
@@ -14,34 +12,35 @@ public class ProjectManagementPageObject extends BasePage {
 
     }
 
-    /*public void clickToFirstProject() {
-        waitForElementClickable(driver, ProjectManagementPageUI.ROW_TABLE);
-        clickToElement(driver,ProjectManagementPageUI.ROW_TABLE);
-        //return new ProjectDetailPageObject(driver);
-    }*/
-
     public void clickToFirstProject(String ColumnName, String RowIndex) {
-        int columnIndex = getElementSize(driver, ProjectManagementPageUI.COLUMN_INDEX, ColumnName) + 1;
-        waitForAllElementVisible(driver, ProjectManagementPageUI.COLUMN_ROW_INDEX_TEXT_BOX, RowIndex,String.valueOf(columnIndex));
+        int columnIndex = getElementSize(driver, ProjectManagementPageUI.COLUMN_INDEX_BY_NAME, ColumnName) + 1;
+        waitForElementVisible(driver, ProjectManagementPageUI.COLUMN_ROW_INDEX_TEXT_BOX, RowIndex,String.valueOf(columnIndex));
         clickToElement(driver, ProjectManagementPageUI.COLUMN_ROW_INDEX_TEXT_BOX, RowIndex,String.valueOf(columnIndex));
     }
-    public void clickToEditButton() {
-        waitForElementClickable(driver, ProjectDetailPageUI.EDIT_BUTTON);
-        clickToElement(driver, ProjectDetailPageUI.EDIT_BUTTON);
+    public ProjectManagementPageObject clickToEditButton() {
+        //areJQueryAndJSLoadedSuccess(driver);
+        sleepInSection(4);
+        //waitForPageLoad(driver);
+        scrollToBottomPage(driver);
+        waitForElementClickable(driver, ProjectManagementPageUI.EDIT_BUTTON);
+        clickToElement(driver, ProjectManagementPageUI.EDIT_BUTTON);
+        return PageGenerator.getProjectManagementPage(driver);
     }
 
     public void inputNewProjectName(String projectName) {
-        //WebElement shadowHost = driver.findElement(By.xpath(ProjectDetailPageUI.SHADOW_ROOT_PROJECT_NAME_TEXT_BOX));
-        //SearchContext shadow = shadowHost.getShadowRoot();
-        // WebElement accept = shadow.findElement(By.xpath(ProjectDetailPageUI.PROJECT_NAME_TEXT_BOX));
-        // accept.clear();
-        // accept.sendKeys(projectName);
-        waitForElementVisible(driver,ProjectDetailPageUI.PROJECT_NAME_TEXT_BOX);
-        sendKeyToElement(driver, ProjectDetailPageUI.PROJECT_NAME_TEXT_BOX,projectName );
+        waitForElementVisible(driver, ProjectManagementPageUI.PROJECT_NAME_TEXT_BOX);
+        sendKeyToElement(driver, ProjectManagementPageUI.PROJECT_NAME_TEXT_BOX, projectName);
     }
 
     public void clickToConfirmButton() {
-        waitForElementClickable(driver, ProjectDetailPageUI.CONFIRM_BUTTON);
-        clickToElement(driver,ProjectDetailPageUI.CONFIRM_BUTTON);
+        scrollToBottomPage(driver);
+        waitForElementClickable(driver, ProjectManagementPageUI.CONFIRM_BUTTON);
+        clickToElement(driver, ProjectManagementPageUI.CONFIRM_BUTTON);
+    }
+
+    public String getNewProjectName() {
+        waitForElementVisible(driver,ProjectManagementPageUI.PROJECT_NAME);
+        return getElementText(driver, ProjectManagementPageUI.PROJECT_NAME);
+
     }
 }

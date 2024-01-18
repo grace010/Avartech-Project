@@ -18,10 +18,6 @@ public class UserManagementPageObject extends BasePage {
         return PageGenerator.getProjectManagementPage(driver);
     }
 
-    public void clickToUserManagementTab() {
-        waitForElementClickable(driver, UserManagementPageUI.USER_MANAGEMENT_TAB);
-        clickToElement(driver, UserManagementPageUI.USER_MANAGEMENT_TAB);
-    }
 }
 
 

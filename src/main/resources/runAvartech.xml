@@ -4,7 +4,8 @@
     <test name="Test">
        <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="testcase.avartech.admin.ProjectManagementPage"/>
+           <!-- <class name="testcase.avartech.admin.ProjectManagementPageTCs"/>-->
+            <class name="testcase.avartech.user.MarketPlaceSoilRestorationPageTCs"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -6,14 +6,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class LogIn extends BaseTest {
+public class LogInTCs extends BaseTest {
     String userName = "root";
     String password = "admin@1234";
     private LoginPageObject loginPage;
     @Parameters("browser")
     @BeforeClass ()
     public void beforeClass(String browserName){
-    getBrowserDriver(browserName);
+    getBrowserDriverAdminSite(browserName);
     loginPage = PageGenerator.getLoginPage(driver);
 
     }

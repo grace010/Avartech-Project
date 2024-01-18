@@ -1,7 +1,6 @@
 package admin.pagegeneratormanager;
 
 import admin.pageobjects.LoginPageObject;
-import admin.pageobjects.ProjectDetailPageObject;
 import admin.pageobjects.ProjectManagementPageObject;
 import admin.pageobjects.UserManagementPageObject;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +18,4 @@ public class PageGenerator {
         return new ProjectManagementPageObject(driver);
     }
 
-    public static ProjectDetailPageObject getProjectDetailPage(WebDriver driver) {
-        return new ProjectDetailPageObject(driver);
-    }
 }

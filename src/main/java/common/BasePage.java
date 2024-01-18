@@ -1,6 +1,5 @@
 package common;
 
-import admin.pageuis.ProjectDetailPageUI;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
@@ -11,7 +10,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class BasePage {
@@ -125,8 +123,6 @@ public class BasePage {
     public void clickToElement(WebDriver driver, String xpathLocator, String... restParaValue) {
         getWebElement(driver,xpathLocator, restParaValue).click();
     }
-
-
 
     public void sendKeyToElement(WebDriver driver, String xpathLocator, String inputtedText){
         WebElement webElement = getWebElement(driver,xpathLocator) ;
@@ -250,7 +246,7 @@ public class BasePage {
 
     public void scrollToBottomPage(WebDriver driver) {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+        jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
     }
 
     public void highlightElement(WebDriver driver, String xpathLocator) {
@@ -279,6 +275,10 @@ public class BasePage {
         jsExecutor.executeScript("arguments[0].removeAttribute('" + attributeRemove + "');",
                 getWebElement(driver, xpathLocator));
     }
+    public void waitForPageLoad(WebDriver driver) {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
+        explicitWait.until(ExpectedConditions.jsReturnsValue("return document.readyState === 'complete';"));
+    }
 
     public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
         WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
@@ -294,7 +294,6 @@ public class BasePage {
                 }
             }
         };
-
         ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver driver) {
@@ -323,14 +322,22 @@ public class BasePage {
         }
     }
 
-    public void uploadMultipleFiles(WebDriver driver, String...fileNames) {
-        String filePath = globalVariables.UPLOAD_FILE_FOLDER;
+    public void uploadMultipleImageFiles(WebDriver driver, String xpathLocator, String...fileNames) {
+        String filePath = GlobalVariables.UPLOAD_FILE_FOLDER;
         String fullFileName = "";
         for (String file : fileNames) {
             fullFileName = fullFileName + filePath + file +"\n";
         }
         fullFileName = fullFileName.trim();
-        getWebElement(driver,globalVariables.UPLOAD_FILE_BUTTON).sendKeys(fullFileName);
+        getWebElement(driver,xpathLocator).sendKeys(fullFileName);
+    }
+
+    public void uploadOneImageFile(WebDriver driver, String xpathLocator, String fileName) {
+        String filePath = GlobalVariables.UPLOAD_FILE_FOLDER;
+        String fullFileName = "";
+        fullFileName = fullFileName + filePath + fileName + "\n";
+        fullFileName = fileName.trim();
+        getWebElement(driver,xpathLocator).sendKeys(fullFileName);
     }
 
     public void waitForElementVisible(WebDriver driver, String xpathLocator) {

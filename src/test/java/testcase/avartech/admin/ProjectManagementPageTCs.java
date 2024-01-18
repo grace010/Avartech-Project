@@ -2,52 +2,51 @@ package testcase.avartech.admin;
 
 import admin.pagegeneratormanager.PageGenerator;
 import admin.pageobjects.LoginPageObject;
-import admin.pageobjects.ProjectDetailPageObject;
 import admin.pageobjects.ProjectManagementPageObject;
 import admin.pageobjects.UserManagementPageObject;
 import common.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class ProjectManagementPage extends BaseTest {
-    String userName = "root";
-    String password = "admin@1234";
+import java.util.Random;
+
+public class ProjectManagementPageTCs extends BaseTest {
+    private String userName = "root";
+    private String password = "admin@1234";
     private LoginPageObject loginPage;
     private ProjectManagementPageObject projectManagementPage;
-    private ProjectDetailPageObject projectDetailPage;
     private UserManagementPageObject userManagementPage;
-    String projectName = "new Project";
-    String rowNumber = "1";
+    public static String projectName = "New Project" + randomInt();
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName){
-        getBrowserDriver(browserName);
+        getBrowserDriverAdminSite(browserName);
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.inputUserName(userName);
         loginPage.inputPassWord(password);
         userManagementPage = loginPage.clickToLoginButton();
-
     }
 
     @Test
-    public void tc02_editProject(){
+    public void tc01_editProjectName(){
         projectManagementPage = userManagementPage.clickToProjectManagementTab();
-        //driver.findElement(By.xpath("//tbody/tr[1]/td[2]")).click();
-        /* projectDetailPage =*/ projectManagementPage.clickToFirstProject("Location", "2");
-
+        projectManagementPage.clickToFirstProject("Location", "1");
         projectManagementPage.clickToEditButton();
-       //
-
         projectManagementPage.inputNewProjectName(projectName);
-        //sleepInSection(5);
-
         projectManagementPage.clickToConfirmButton();
+        Assert.assertEquals(projectManagementPage.getNewProjectName(), projectName);
+    }
 
-        //Assert.assertEquals(projectDetailPage.getNewProjectName(), projectName);
+    @Test
+    public void tc02_editNumberPictureOfProject(){
 
+    }
+
+    public static int randomInt(){
+        Random random = new Random();
+        return random.nextInt(9999);
     }
 
     public void sleepInSection(long timeInSection) {
