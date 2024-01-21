@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="1"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="23.459">
+  <properties />
+  
+  
+            <testcase name="tc01_editProjectName" time="23.459" classname="testcase.avartech.admin.ProjectManagementPageTCs" />
+      
+</testsuite>

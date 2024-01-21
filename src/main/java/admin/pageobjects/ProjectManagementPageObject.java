@@ -38,9 +38,11 @@ public class ProjectManagementPageObject extends BasePage {
         clickToElement(driver, ProjectManagementPageUI.CONFIRM_BUTTON);
     }
 
+
     public String getNewProjectName() {
-        waitForElementVisible(driver,ProjectManagementPageUI.PROJECT_NAME);
+        waitForElementVisible(driver, ProjectManagementPageUI.PROJECT_NAME);
         return getElementText(driver, ProjectManagementPageUI.PROJECT_NAME);
 
     }
+
 }

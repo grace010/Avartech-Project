@@ -2,13 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
     <listeners>
-        <listener class-name="common.MethodListener"></listener>
+        <listener class-name="common.MethodListener"/>
+        <listener class-name="reportConfigs.ExtentTestListener"/>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+
     </listeners>
     <test name="Test">
        <parameter name="browser" value="chrome"/>
         <classes>
-           <!-- <class name="testcase.avartech.admin.ProjectManagementPageTCs"/>-->
-            <class name="testcase.avartech.user.MarketPlaceSoilRestorationPageTCs"/>
+            <class name="testcase.avartech.admin.ProjectManagementPageTCs"/>
+            <!--<class name="testcase.avartech.user.MarketPlaceSoilRestorationPageTCs"/>-->
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

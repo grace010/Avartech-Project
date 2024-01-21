@@ -385,7 +385,23 @@ public class BasePage {
         explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(xpathLocator,restParaValue)));
     }
 
+    public void overrideImplicitTimeout(WebDriver driver, long timeOut) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(timeOut));
+    }
+
+    public boolean isElementUndisplayed(WebDriver driver, String xpathLocator ) {
+        overrideImplicitTimeout(driver, shortTimeout);
+        List<WebElement> elements = getListWebElement(driver, xpathLocator);
+        overrideImplicitTimeout(driver,longTimeout);
+        if(elements.size()==0) {
+            return true;
+        }else if(elements.size()>0 && !elements.get(0).isDisplayed()) {
+            return true;
+        }else
+            return false;
+    }
+
     private long shortTimeout = 10;
-    private long longTimeout = 10;
+    private long longTimeout = 30;
 
 }

@@ -1,15 +1,23 @@
 package common;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.Reporter;
-
 import java.time.Duration;
-
 public class BaseTest {
     protected WebDriver driver;
+    protected final Logger log;
+    protected BaseTest(){
+        log = LogManager.getLogger("testcase.avartech.admin.ProjectManagementPageTCs");
+    }
+
+    public WebDriver getDriverInstance() {
+        return this.driver;
+    }
 
     protected void getBrowserDriverAdminSite(String browserName) {
         switch (browserName){
@@ -47,12 +55,12 @@ public class BaseTest {
         boolean status = true;
         try {
             Assert.assertTrue(condition);
-            System.out.println("---------------------- Passed -----------------------");
+            log.info("---------------------- Passed -----------------------");
         } catch (Throwable e) {
             status = false;
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
-            System.out.println("---------------------- Failed -----------------------");
+            log.info("---------------------- Failed -----------------------");
         }
         return status;
     }
@@ -61,12 +69,12 @@ public class BaseTest {
         boolean status = true;
         try {
             Assert.assertFalse(condition);
-            System.out.println("---------------------- Passed -----------------------");
+            log.info("---------------------- Passed -----------------------");
         } catch (Throwable e) {
             status = false;
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
-            System.out.println("---------------------- Failed -----------------------");
+            log.info("---------------------- Failed -----------------------");
         }
         return status;
     }
@@ -75,12 +83,12 @@ public class BaseTest {
         boolean status = true;
         try {
             Assert.assertEquals(actual, expected);
-            System.out.println("---------------------- Passed -----------------------");
+            log.info("---------------------- Passed -----------------------");
         } catch (Throwable e) {
             status = false;
             VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
             Reporter.getCurrentTestResult().setThrowable(e);
-            System.out.println("---------------------- Failed -----------------------");
+            log.info("---------------------- Failed -----------------------");
         }
         return status;
     }

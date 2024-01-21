@@ -10,5 +10,5 @@ public class ProjectManagementPageUI {
    // public static final String ROW_TABLE = "//tbody/tr[1]/td[2]";
     public static final String COLUMN_INDEX_BY_NAME = "//span[text()='%s']/parent::div/parent::th//preceding-sibling::th";
     public static final String COLUMN_ROW_INDEX_TEXT_BOX = "//tbody/tr[%s]/td[%s]";
-    public static final String PROJECT_NAME = "//div[text()='Summary']/parent::div/parent::div/preceding-sibling::div[contains(@class,'flex')]//span[@class='max-w-full inline-block break-all relative']";
+    public static final String PROJECT_NAME = "//div[text()='Summary']/parent::div/parent::div/preceding-sibling::div[contains(@class,'flex')]//span[@class='max-w-full inline-block break-all relative']/div";
 }

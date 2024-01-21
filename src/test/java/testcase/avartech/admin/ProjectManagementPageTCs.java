@@ -5,6 +5,7 @@ import admin.pageobjects.LoginPageObject;
 import admin.pageobjects.ProjectManagementPageObject;
 import admin.pageobjects.UserManagementPageObject;
 import common.BaseTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -18,7 +19,8 @@ public class ProjectManagementPageTCs extends BaseTest {
     private LoginPageObject loginPage;
     private ProjectManagementPageObject projectManagementPage;
     private UserManagementPageObject userManagementPage;
-    public static String projectName = "New Project" + randomInt();
+    public int randomProjectName = randomInt();
+    public String projectName = "New Project " + randomProjectName;
     @Parameters("browser")
     @BeforeClass
     public void beforeClass(String browserName){
@@ -26,25 +28,33 @@ public class ProjectManagementPageTCs extends BaseTest {
         loginPage = PageGenerator.getLoginPage(driver);
         loginPage.inputUserName(userName);
         loginPage.inputPassWord(password);
+        log.info("step 01: click to login button");
         userManagementPage = loginPage.clickToLoginButton();
     }
 
     @Test
     public void tc01_editProjectName(){
+        log.info("step02: click to project management tab");
         projectManagementPage = userManagementPage.clickToProjectManagementTab();
+        log.info("step02: click to project management tab");
         projectManagementPage.clickToFirstProject("Location", "1");
+        log.info("step02: click to project management tab");
         projectManagementPage.clickToEditButton();
+        log.info("step02: click to project management tab");
         projectManagementPage.inputNewProjectName(projectName);
+        log.info("step02: click to project management tab");
         projectManagementPage.clickToConfirmButton();
+        sleepInSection(6);
         Assert.assertEquals(projectManagementPage.getNewProjectName(), projectName);
+
     }
 
-    @Test
+   /* @Test
     public void tc02_editNumberPictureOfProject(){
 
-    }
+    }*/
 
-    public static int randomInt(){
+    public int randomInt(){
         Random random = new Random();
         return random.nextInt(9999);
     }
