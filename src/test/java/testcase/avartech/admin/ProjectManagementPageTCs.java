@@ -7,10 +7,12 @@ import admin.pageobjects.UserManagementPageObject;
 import common.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.Calendar;
 import java.util.Random;
 
 public class ProjectManagementPageTCs extends BaseTest {
@@ -66,5 +68,14 @@ public class ProjectManagementPageTCs extends BaseTest {
             // TODO: handle exceptVerify_Default_Dropdown2.javaion
             e.printStackTrace();
         }
+    }
+
+    public long randomNumberByDate(){
+        return Calendar.getInstance().getTimeInMillis() % 10000;
+    }
+
+    @AfterClass (alwaysRun = true)
+    public void afterClass(){
+        closeBrowserDriver();
     }
 }
