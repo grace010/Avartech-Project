@@ -5,19 +5,20 @@ import admin.pageobjects.LoginPageObject;
 import admin.pageobjects.ProjectManagementPageObject;
 import admin.pageobjects.UserManagementPageObject;
 import common.BaseTest;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import utilities.DataMapper;
 
 import java.util.Calendar;
 import java.util.Random;
 
 public class ProjectManagementPageTCs extends BaseTest {
-    private String userName = "root";
-    private String password = "admin@1234";
+    DataMapper userDataMapper;
+    //private String userName = "root";
+    //private String password = "admin@1234";
     private LoginPageObject loginPage;
     private ProjectManagementPageObject projectManagementPage;
     private UserManagementPageObject userManagementPage;
@@ -28,8 +29,11 @@ public class ProjectManagementPageTCs extends BaseTest {
     public void beforeClass(String browserName){
         getBrowserDriverAdminSite(browserName);
         loginPage = PageGenerator.getLoginPage(driver);
-        loginPage.inputUserName(userName);
-        loginPage.inputPassWord(password);
+        userDataMapper = DataMapper.getUserData();
+        loginPage.inputUserName( userDataMapper.getUserName());
+        //userDataMapper.getUserName();
+        loginPage.inputPassWord( userDataMapper.getPassword());
+        //userDataMapper.getPassword();
         log.info("step 01: click to login button");
         userManagementPage = loginPage.clickToLoginButton();
     }
@@ -50,11 +54,6 @@ public class ProjectManagementPageTCs extends BaseTest {
         Assert.assertEquals(projectManagementPage.getNewProjectName(), projectName);
 
     }
-
-   /* @Test
-    public void tc02_editNumberPictureOfProject(){
-
-    }*/
 
     public int randomInt(){
         Random random = new Random();
