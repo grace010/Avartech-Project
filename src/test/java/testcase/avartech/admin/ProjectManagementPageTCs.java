@@ -31,9 +31,7 @@ public class ProjectManagementPageTCs extends BaseTest {
         loginPage = PageGenerator.getLoginPage(driver);
         userDataMapper = DataMapper.getUserData();
         loginPage.inputUserName( userDataMapper.getUserName());
-        //userDataMapper.getUserName();
         loginPage.inputPassWord( userDataMapper.getPassword());
-        //userDataMapper.getPassword();
         log.info("step 01: click to login button");
         userManagementPage = loginPage.clickToLoginButton();
     }
