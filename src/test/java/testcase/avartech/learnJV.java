@@ -7,11 +7,21 @@ package testcase.avartech;
 //Builder Pattern
 //super gọi qua class cha
 
-public class learnJV {
+public abstract class learnJV {
     public long shortTimeout = 10;
     public long longTimeout = 15;
+
+    abstract void sleep();
     public void test(){
         System.out.println("check out");
+    }
+    public learnJV(){
+        System.out.println("contractor of class cha");
+    }
+
+
+    public static void main(String[] args) {
+
     }
 
 }

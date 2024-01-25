@@ -10,8 +10,22 @@ public class learnJV1 extends learnJV{
         test();
 
     }
-    public static void main(String[] args) {
+    @Override
+    public void sleep(){
+        System.out.println("");
+    }
 
+    public learnJV1(){
+      super();// luon goi qua contractor của class cha
+        System.out.println("contractor con");
+    }
+    @Override
+    public void test(){
+        System.out.println("check out of me");
+    }
+    public static void main(String[] args) {
+        learnJV1 learn = new learnJV1();
+        learn.test();
     }
 
 }
