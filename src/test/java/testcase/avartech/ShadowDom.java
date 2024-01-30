@@ -13,7 +13,9 @@ public class ShadowDom {
 
     // Main method
     public static void main(String[] args) {
-       myStaticMethod(); // Call the static method
+        int[][] myNumbers = new int[3][4];
+        System.out.println(myNumbers[2].length);
+
 
     }
 }
