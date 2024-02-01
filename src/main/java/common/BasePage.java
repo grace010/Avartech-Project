@@ -103,7 +103,8 @@ public class BasePage {
     private WebElement getWebElement(WebDriver driver, String xpathLocator, String...restParaValue){
         return driver.findElement(getByXpath(xpathLocator, restParaValue));
     }
-    private List<WebElement> getListWebElement(WebDriver driver, String xpathLocator){
+
+    protected List<WebElement> getListWebElement(WebDriver driver, String xpathLocator){
         return driver.findElements(getByXpath(xpathLocator));
     }
 

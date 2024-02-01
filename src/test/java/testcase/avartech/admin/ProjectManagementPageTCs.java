@@ -37,7 +37,7 @@ public class ProjectManagementPageTCs extends BaseTest {
     }
 
     @Test
-    public void tc01_editProjectName(){
+    public void TC_01_editProjectName(){
         log.info("step02: click to project management tab");
         projectManagementPage = userManagementPage.clickToProjectManagementTab();
         log.info("step02: click to project management tab");
@@ -50,6 +50,19 @@ public class ProjectManagementPageTCs extends BaseTest {
         projectManagementPage.clickToConfirmButton();
         sleepInSection(6);
         Assert.assertEquals(projectManagementPage.getNewProjectName(), projectName);
+
+    }
+
+    @Test
+    public void TC_02_sortProjectByGrower(){
+        sleepInSection(2);
+        projectManagementPage = projectManagementPage.clickToProjectManagementTab();
+        projectManagementPage.getListGrowerByText();
+        System.out.println(projectManagementPage.getListPagingSize());
+        //projectManagementPage.clickToPaging();
+        /*projectManagementPage.getListProjectByGrowser("Grower");
+        projectManagementPage.sortGrowerByDesc();
+        projectManagementPage.sortGrowerByAsc();*/
 
     }
 
