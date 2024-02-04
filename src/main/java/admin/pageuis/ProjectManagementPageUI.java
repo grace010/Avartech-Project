@@ -13,5 +13,6 @@ public class ProjectManagementPageUI {
     public static final String PROJECT_NAME = "//div[text()='Summary']/parent::div/parent::div/preceding-sibling::div[contains(@class,'flex')]//span[@class='max-w-full inline-block break-all relative']/div";
     public static final String GROWER_LIST_BY_NAME = "//tbody//tr//td[5]";
     public static final String LIST_PAGING = "//ul//li";
-    public static final String LIST_PAGING_BY_INDEX = "//ul//li[%s]";
+    public static final String LIST_PAGING_BY_INDEX = "//li[%s]";
+    public static final String GROWER_SORT_BUTTON = "//span[text()='Grower']";
 }

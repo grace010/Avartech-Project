@@ -5,6 +5,7 @@ import admin.pageobjects.LoginPageObject;
 import admin.pageobjects.ProjectManagementPageObject;
 import admin.pageobjects.UserManagementPageObject;
 import common.BaseTest;
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -57,12 +58,9 @@ public class ProjectManagementPageTCs extends BaseTest {
     public void TC_02_sortProjectByGrower(){
         sleepInSection(2);
         projectManagementPage = projectManagementPage.clickToProjectManagementTab();
-        projectManagementPage.getListGrowerByText();
-        System.out.println(projectManagementPage.getListPagingSize());
-        //projectManagementPage.clickToPaging();
-        /*projectManagementPage.getListProjectByGrowser("Grower");
-        projectManagementPage.sortGrowerByDesc();
-        projectManagementPage.sortGrowerByAsc();*/
+        sleepInSection(5);
+        //projectManagementPage.clickToGrowerSortButton();
+        System.out.println(projectManagementPage.getGrowerByText());
 
     }
 
@@ -84,8 +82,8 @@ public class ProjectManagementPageTCs extends BaseTest {
         return Calendar.getInstance().getTimeInMillis() % 10000;
     }
 
-    @AfterClass (alwaysRun = true)
+   /* @AfterClass (alwaysRun = true)
     public void afterClass(){
         closeBrowserDriver();
-    }
+    }*/
 }

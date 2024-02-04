@@ -4,6 +4,7 @@ import admin.pagegeneratormanager.PageGenerator;
 import admin.pageuis.ProjectManagementPageUI;
 import admin.pageuis.UserManagementPageUI;
 import common.BasePage;
+import net.bytebuddy.asm.Advice;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -52,13 +53,6 @@ public class ProjectManagementPageObject extends BasePage {
 
     }
 
-    /*public void sortGrowerByDesc() {
-        List<String > listProject = new List<String>() {
-
-        }
-
-    }*/
-
     public void sortGrowerByAsc() {
 
     }
@@ -69,28 +63,40 @@ public class ProjectManagementPageObject extends BasePage {
         return PageGenerator.getProjectManagementPage(driver);
     }
 
-    public String getListGrowerByText() {
-        //int columnIndex = getElementSize(driver, ProjectManagementPageUI.COLUMN_INDEX_BY_NAME, ColumnName) + 1;
-        List<String> textList = new ArrayList<String>();
-        List<WebElement> listGrowerByName = getListWebElement(driver, ProjectManagementPageUI. GROWER_LIST_BY_NAME);
-        for (WebElement listItem : listGrowerByName){
-            String textItem = listItem.getText() ;
-            textList.add(textItem);
-        }
-        return textList.toString();
+    public void clickToGrowerSortButton() {
+        waitForElementVisible(driver, ProjectManagementPageUI.GROWER_SORT_BUTTON);
+        clickToElement(driver, ProjectManagementPageUI.GROWER_SORT_BUTTON);
     }
 
     public int getListPagingSize(){
-        waitForElementClickable(driver, ProjectManagementPageUI.LIST_PAGING);
+        //waitForElementClickable(driver, ProjectManagementPageUI.LIST_PAGING);
         return getElementSize(driver, ProjectManagementPageUI.LIST_PAGING);
     }
 
-    public void clickToPaging() {
-       // List<String> listDataByEachPage = new ArrayList<String>();
+
+
+    public boolean getGrowerByText() {
+        List<String> listDataByEachPageBeforeSort = new ArrayList<String>();
         scrollToBottomPage(driver);
-        sleepInSection(3);
-        for (int i = 1; i <= getListPagingSize(); i++) {
+        sleepInSection(2);
+        for (int i = 2; i <= (getListPagingSize()-1); i++) {
             clickToElement(driver, ProjectManagementPageUI.LIST_PAGING_BY_INDEX, String.valueOf(i));
+            sleepInSection(2);
+            List<WebElement> listWebElement = getListWebElement(driver, ProjectManagementPageUI.GROWER_LIST_BY_NAME);
+            for (WebElement listItem : listWebElement) {
+                String listText = listItem.getText();
+                listDataByEachPageBeforeSort.add(listText);
+            }
         }
+
+
+        List<String> listDataByEachPageAfterSort = new ArrayList<String>();
+        for (String listProduct :listDataByEachPageBeforeSort) {
+            listDataByEachPageAfterSort.add(listProduct);
+        }
+
+        Collections.sort(listDataByEachPageAfterSort);
+        return listDataByEachPageBeforeSort.equals(listDataByEachPageAfterSort);
     }
+
 }
